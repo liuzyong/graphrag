@@ -92,7 +92,8 @@ async def prepare_azurite_data(input_path: str, azure: dict) -> Callable[[], Non
 
     root = Path(input_path)
     input_storage = BlobPipelineStorage(
-        connection_string=WELL_KNOWN_AZURITE_CONNECTION_STRING,
+        connection_string=None,
+        storage_account_blob_url=os.getenv("BLOB_STORAGE_URL"),
         container_name=input_container,
     )
     # Bounce the container if it exists to clear out old run data
