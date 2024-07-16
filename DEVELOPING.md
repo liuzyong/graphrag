@@ -19,6 +19,9 @@ poetry install
 ## Execute the Indexing Engine
 
 ```sh
+poetry run poe index --init --root ./ragtest
+poetry run poe index --root ./ragtest
+
 poetry run poe index <...args>
 ```
 
