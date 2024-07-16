@@ -23,14 +23,14 @@ class OpenAIEmbeddingsLLM(BaseLLM[EmbeddingInput, EmbeddingOutput]):
     _configuration: OpenAIConfiguration
 
     def __init__(self, client: OpenAIClientTypes, configuration: OpenAIConfiguration):
-        self.client = client
-        self.configuration = configuration
+        self._client = client
+        self._configuration = configuration
 
     async def _execute_llm(
         self, input: EmbeddingInput, **kwargs: Unpack[LLMInput]
     ) -> EmbeddingOutput | None:
         args = {
-            "model": self.configuration.model,
+            "model": self._configuration.model,
             **(kwargs.get("model_parameters") or {}),
         }
         # embedding = await self.client.embeddings.create(
